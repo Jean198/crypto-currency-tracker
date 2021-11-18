@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import CoinList from "../components/CoinList"
 import Layout from "../components/Layout"
 import SearchBar from "../components/Search"
@@ -5,15 +6,27 @@ import SearchBar from "../components/Search"
 
 
 export default function index({filteredCoins}) {
+  const [search, setSearch]=useState('')
+
+  const allCoins = filteredCoins.filter(coin=>
+    coin.name.toLowerCase().includes(search.toLowerCase())
+    )
+
+  
+  
+  const handleChange= e =>{
+    e.preventDefault()
+    setSearch(e.target.value.toLowerCase())
+  }
   return (
     <Layout>
 
      
         
 
-        <SearchBar type="text" placeholder="Search"/>
+        <SearchBar type="text" placeholder="Search" onChange={handleChange}/>
 
-        <CoinList filteredCoins={filteredCoins}/>
+        <CoinList filteredCoins={allCoins}/>
       
     </Layout>
   )

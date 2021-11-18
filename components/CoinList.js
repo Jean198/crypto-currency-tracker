@@ -17,6 +17,7 @@ export default function CoinList({filteredCoins}) {
             volume={coin.total_volume}
             image={coin.image}
             priceChange={coin.price_change_percentage_24h} 
+            id={coin.id}
 
 
             />
